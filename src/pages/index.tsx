@@ -5,7 +5,6 @@ import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
-
 export default function HomePage() {
   return (
     <Layout>
@@ -17,7 +16,7 @@ export default function HomePage() {
           <Header />
           <section className='flex justify-center px-2 mt-24 mb-24 text-center'>
             <div className='xl:w-2/3'>
-              <h1 className='font-secondary text-zinc-800 mb-4 text-5xl font-bold text-center md:text-5xl md:leading-9'>
+              <h1 className='font-secondary text-zinc-800 mb-4 text-6xl font-bold text-center md:text-5xl'>
                 Protect your Images with Invisible Watermarks
               </h1>
               <h3 className='font- text-zinc-900 text-lg font-normal leading-6 md:px-5 md:text-2xl'>
@@ -32,7 +31,7 @@ export default function HomePage() {
           <div className='flex justify-center px-4 py-8 xl:py-12 xl:w-2/3'>
             <div className='rounded-2xl shadow-2xl'>
               <Image
-                className=''
+                className='block w-full h-full'
                 width={'1904'}
                 height={'934'}
                 alt='alt'
@@ -42,7 +41,7 @@ export default function HomePage() {
           </div>
         </section>
         <div className='container px-4 mx-auto xl:px-44'>
-          <section className='px-4 mt-24'>
+          <section id='feature' className='px-4 mt-24'>
             <div className='flex justify-center mb-12 text-center'>
               <div className='xl:w-2/3'>
                 <h1 className='text-zinc-800 text-3xl'>How does it work?</h1>
@@ -135,7 +134,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className='pb-20 mt-24 w-full'>
+          <section id='pricing' className='pb-20 mt-24 w-full'>
             <div className='px-10 mx-auto max-w-7xl text-center'>
               <h1 className='fotn-secondary text-3xl'>Flexible Plans</h1>
               <p className='mt-3 text-lg text-gray-500'>
