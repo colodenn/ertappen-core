@@ -51,7 +51,7 @@
     background-size: 22px 22px;
   }
 
-  li {
+  .li {
     @apply border-b-2 border-gray-200 cursor-pointer hover:border-blue-400;
   }
 
@@ -113,7 +113,29 @@
     background-size: 0 2px, 100% 2px;
   }
 
-  .btn {
-    @apply bg-zinc-700 px-3 py-2 text-white rounded cursor-pointer hover:bg-zinc-600;
+  /* .btn {
+    @apply bg-zinc-700 cursor-pointer px-3 py-2 rounded text-white hover:bg-zinc-600;
+  } */
+
+  .para {
+    font-weight: 300;
+  }
+
+  .fixedHeight {
+    height: calc(100vh - 66px);
+  }
+
+  .fixedWidth {
+    width: calc(100vw - 80px);
+  }
+  * {
+    box-sizing: border-box;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    scrollbar-visibility: hidden;
+  }
+
+  *::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
   }
 }

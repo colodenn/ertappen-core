@@ -10,10 +10,10 @@ export default function Footer() {
         </div>
         <div className='mt-4'>
           <ul className='flex justify-start'>
-            <li className='mr-6 text-base border-b-2 border-gray-200'>
+            <li className='li mr-6 text-base border-b-2 border-gray-200'>
               Terms of Service
             </li>
-            <li className='text-base border-b-2 border-gray-200'>Contact</li>
+            <li className='li text-base border-b-2 border-gray-200'>Contact</li>
           </ul>
         </div>
       </div>

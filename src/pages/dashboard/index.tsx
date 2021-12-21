@@ -1,0 +1,50 @@
+import { useAlert } from 'react-alert';
+
+import Layout from '@/components/layout/dashboard/Layout';
+
+function Home() {
+  const alert = useAlert();
+
+  return (
+    <>
+      <Layout name='Dashboard'>
+        <div className='grid gap-4 md:grid-cols-3'>
+          <div
+            className='card mb-8 shadow-lg'
+            onClick={() => {
+              alert.show('success', {
+                type: 'success',
+              });
+            }}
+          >
+            <div className='card-body'>
+              <h2 className='card-title'>Upload your first image</h2>
+              <p>
+                Click me to test alert Go to the image tab and upload an image
+                you want to mark with a hidden watermark.
+              </p>
+            </div>
+          </div>
+          <div className='card mb-8 shadow-lg'>
+            <div className='card-body'>
+              <h2 className='card-title'>Add a User</h2>
+              <p>Proceed and add a userspecific watermark to your image.</p>
+            </div>
+          </div>
+          <div className='card mb-8 shadow-lg'>
+            <div className='card-body'>
+              <h2 className='card-title'>Detect User</h2>
+              <p>
+                Found your image on reddit, instagram or facebook? Download the
+                image and upload it here to check who started sharing your
+                image.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Layout>
+    </>
+  );
+}
+
+export default Home;

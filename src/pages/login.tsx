@@ -1,9 +1,12 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import { useUser } from '@/utils/useUser';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const loginUser = useUser();
+  const router = useRouter();
   return (
     <main className='align-center dotted flex justify-center items-center mx-auto my-auto w-full h-screen'>
       <div>
@@ -26,6 +29,7 @@ export default function Login() {
             onClick={(e) => {
               e.preventDefault();
               loginUser?.loginUser(email);
+              router.push('/dashboard');
             }}
             className='btn mt-2 w-full'
           >
