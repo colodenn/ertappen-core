@@ -17,6 +17,7 @@ module.exports = {
     extend: {
       fontFamily: {
         primary: ['Inter', ...fontFamily.sans],
+        secondary: ['Space Grotesk', ...fontFamily.sans],
       },
       colors: {
         primary: {

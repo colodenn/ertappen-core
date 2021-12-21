@@ -2,30 +2,30 @@ import * as React from 'react';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
 
-const links = [
-  { href: '/', label: 'Route 1' },
-  { href: '/', label: 'Route 2' },
-];
-
 export default function Header() {
   return (
-    <header className='sticky top-0 z-50 bg-white'>
-      <div className='layout flex justify-between items-center h-14'>
-        <UnstyledLink href='/' className='font-bold hover:text-gray-600'>
-          Home
+    <header className='mt-4 mb-8 md:flex md:justify-between'>
+      <div className='flex justify-center'>
+        <UnstyledLink href='/' className='text-zinc-900 text-2xl font-bold'>
+          ertappen.
         </UnstyledLink>
-        <nav>
-          <ul className='flex justify-between items-center space-x-4'>
-            {links.map(({ href, label }) => (
-              <li key={`${href}${label}`}>
-                <UnstyledLink href={href} className='hover:text-gray-600'>
-                  {label}
-                </UnstyledLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
       </div>
+      <nav className='align-center flex justify-center items-center px-6 mt-2 mb-2 font-normal'>
+        <ul className='text-zinc-800 flex items-center text-base'>
+          <li className='mr-4 border-b-2 border-gray-200 hover:border-blue-400'>
+            Contact
+          </li>
+          <li className='mr-4 border-b-2 border-gray-200 hover:border-blue-400'>
+            Features
+          </li>
+          <li className='mr-4 border-b-2 border-gray-200 hover:border-blue-400'>
+            Pricing
+          </li>
+          <li className='bg-zinc-700 px-3 py-2 text-white rounded cursor-pointer hover:bg-zinc-600'>
+            Login
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }

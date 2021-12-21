@@ -40,8 +40,9 @@ export default function NextImage({
       <Image
         className={clsx(
           imgClassName,
+
           // text-gray to hide alt text
-          'text-gray-400 bg-gray-400 ',
+          'text-gray-400 shadow  ',
           status === 'loading' && clsx('animate-pulse', blurClassName)
         )}
         src={src}

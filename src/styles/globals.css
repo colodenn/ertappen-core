@@ -1,7 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
   /* #region  /**=========== Primary Color =========== */
   /* !STARTERCONF Customize these variable, copy and paste from /styles/colors.css for list of colors */
@@ -45,9 +45,19 @@
     cursor: url('/images/new-tab.png') 10 10, pointer;
   }
 
+  .dotted {
+    background: linear-gradient(90deg, #fff 21px, transparent 1%) 50%,
+      linear-gradient(#fff 21px, transparent 1%) 50%, gray;
+    background-size: 22px 22px;
+  }
+
+  li {
+    @apply border-b-2 border-gray-200 cursor-pointer hover:border-blue-400;
+  }
+
   /* #region  /**=========== Typography =========== */
   h1 {
-    @apply font-primary text-2xl font-bold md:text-4xl;
+    @apply font-secondary text-zinc-800 font-bold md:text-4xl;
   }
 
   h2 {
@@ -55,7 +65,7 @@
   }
 
   h3 {
-    @apply font-primary text-lg font-bold md:text-2xl;
+    @apply font-primary text-zinc-800 text-lg font-bold md:text-2xl;
   }
 
   h4 {
