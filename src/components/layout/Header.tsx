@@ -1,5 +1,6 @@
+import Link from 'next/link';
 import * as React from 'react';
-import { Link } from 'react-scroll';
+import { Link as Scroll } from 'react-scroll';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
 
@@ -17,17 +18,17 @@ export default function Header() {
             <a href='mailto:cornelius.denninger@gmail.com'>Contact</a>
           </li>
           <li className='mr-4 border-b-2 border-gray-200 hover:border-blue-400'>
-            <Link spy={false} to='feature' smooth={true}>
+            <Scroll spy={false} to='feature' smooth={true}>
               Features
-            </Link>
+            </Scroll>
           </li>
           <li className='mr-4 border-b-2 border-gray-200 hover:border-blue-400'>
-            <Link spy={false} to='pricing' smooth={true}>
+            <Scroll spy={false} to='pricing' smooth={true}>
               Pricing
-            </Link>
+            </Scroll>
           </li>
-          <li className='bg-zinc-700 px-3 py-2 text-white rounded cursor-pointer hover:bg-zinc-600'>
-            Login
+          <li className='btn'>
+            <Link href='/login'>Login</Link>
           </li>
         </ul>
       </nav>

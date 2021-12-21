@@ -112,4 +112,8 @@
   .animated-underline:focus-visible {
     background-size: 0 2px, 100% 2px;
   }
+
+  .btn {
+    @apply bg-zinc-700 px-3 py-2 text-white rounded cursor-pointer hover:bg-zinc-600;
+  }
 }

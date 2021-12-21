@@ -4,11 +4,15 @@ import '@/styles/globals.css';
 
 import Layout from '@/components/layout/Layout';
 
+import { UserContextProvider } from '@/utils/useUser';
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <UserContextProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </UserContextProvider>
   );
 }
 
