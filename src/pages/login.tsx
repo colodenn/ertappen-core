@@ -1,12 +1,24 @@
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { GetServerSideProps } from 'next';
+import { MouseEvent, useState } from 'react';
 
+import { supabase } from '@/utils/client';
 import { useUser } from '@/utils/useUser';
 
 export default function Login() {
   const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   const loginUser = useUser();
-  const router = useRouter();
+
+  async function login(e: MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    const { error } = await loginUser?.loginUser(email);
+    if (error) {
+      setMessage('Something went wront...Try again');
+    } else {
+      setMessage('Check your emails to log in!');
+    }
+  }
+
   return (
     <main className='align-center dotted flex justify-center items-center mx-auto my-auto w-full h-screen'>
       <div>
@@ -27,16 +39,24 @@ export default function Login() {
           <br />
           <button
             onClick={(e) => {
-              e.preventDefault();
-              loginUser?.loginUser(email);
-              router.push('/dashboard');
+              login(e);
             }}
             className='btn mt-2 w-full'
           >
             Send login link
           </button>
+          <p>{message}</p>
         </form>
       </div>
     </main>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const { user } = await supabase.auth.api.getUserByCookie(req);
+  if (user) {
+    return { props: { user }, redirect: { destination: '/dashboard' } };
+  }
+
+  return { props: {} };
+};

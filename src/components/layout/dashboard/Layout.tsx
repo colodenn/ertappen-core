@@ -1,15 +1,27 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { useEffect, useState } from 'react';
 
+import { useUser } from '@/utils/useUser';
 type LayoutProp = {
   name: string;
   children: React.ReactNode;
 };
 export default function Layout(props: LayoutProp) {
+  const user = useUser();
   const router = useRouter();
+  const [id, setId] = useState('');
 
+  useEffect(() => {
+    setId(user?.user?.id);
+  }, []);
+  async function logout() {
+    const { error } = await user?.logoutUser();
+    !error && router.push('/');
+  }
   return (
     <div className=''>
       <div className='w-full shadow'>
@@ -157,7 +169,7 @@ export default function Layout(props: LayoutProp) {
                   <Image
                     tabIndex={0}
                     className='mb-4 w-12 h-12 rounded-full cursor-pointer'
-                    src={`https://avatars.dicebear.com/api/micah/:seed.svg`}
+                    src={`https://avatars.dicebear.com/api/micah/${id}:seed.svg`}
                     alt=''
                     width={48}
                     height={48}
@@ -175,7 +187,7 @@ export default function Layout(props: LayoutProp) {
                   <Link href={''}>Settings</Link>
                 </li>
                 <li>
-                  <Link href={''}>Logout</Link>
+                  <a onClick={() => logout()}>Logout</a>
                 </li>
               </ul>
             </div>

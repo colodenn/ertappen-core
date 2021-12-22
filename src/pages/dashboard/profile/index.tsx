@@ -1,7 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { AuthUser } from '@supabase/supabase-js';
 import Image from 'next/image';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 import Layout from '@/components/layout/dashboard/Layout';
+
+import { useUser } from '@/utils/useUser';
 export default function Profile() {
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const getUser = useUser();
+
+  useEffect(() => {
+    setUser(getUser?.user);
+  }, []);
   return (
     <>
       <Layout name='Profile'>
@@ -14,14 +26,14 @@ export default function Profile() {
                     <Image
                       width={96}
                       height={96}
-                      src={`https://avatars.dicebear.com/api/micah/:seed.svg`}
+                      src={`https://avatars.dicebear.com/api/micah/${user?.id}:seed.svg`}
                       alt=''
                     />
                   </div>
                 </div>
                 <div className='ml-8'>
-                  {/* <p>{user?.email}</p>
-                  <p>Joined: {user?.created_at}</p> */}
+                  <p>{user?.email}</p>
+                  <p>Joined: {user?.created_at}</p>
                 </div>
               </div>
               <div>

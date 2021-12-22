@@ -1,12 +1,14 @@
-import React, { createContext, useContext, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { AuthUser, Session } from '@supabase/supabase-js';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
+import { supabase } from '@/utils/client';
 interface UserContextInterface {
-  user: User | null;
-  loginUser: (email: string) => void;
-}
-
-interface User {
-  email: string;
+  user: AuthUser | null;
+  loginUser: (email: string) => Promise<any>;
+  logoutUser: () => Promise<any> | void;
+  setUser: (user: AuthUser) => void;
 }
 
 export const UserContext = createContext<UserContextInterface | null>(null);
@@ -16,14 +18,36 @@ export function UserContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
+  useEffect(() => {
+    const session = supabase.auth.session();
+    setSession(session);
 
-  function loginUser(email: string) {
-    setUser({ email: email });
+    setUser(session?.user ?? null);
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        setSession(session);
+        setUser(session?.user ?? null);
+      }
+    );
+
+    return () => {
+      authListener?.unsubscribe();
+    };
+  }, []);
+  async function loginUser(email: string) {
+    const { user, session, error } = await supabase.auth.signIn({ email });
+    return { error, session, user };
+  }
+
+  async function logoutUser() {
+    setUser(null);
+    return await supabase.auth.signOut();
   }
 
   return (
-    <UserContext.Provider value={{ user, loginUser }}>
+    <UserContext.Provider value={{ user, loginUser, logoutUser, setUser }}>
       {children}
     </UserContext.Provider>
   );
