@@ -4,7 +4,7 @@ module.exports = {
     dirs: ['src'],
   },
   images: {
-    domains: ["avatars.dicebear.com" ]
+    domains: ["avatars.dicebear.com" ,"psnuoplhmotoeatilkvw.supabase.co"]
   },
 
   reactStrictMode: true,

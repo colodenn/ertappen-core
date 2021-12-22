@@ -9,6 +9,7 @@ interface UserContextInterface {
   loginUser: (email: string) => Promise<any>;
   logoutUser: () => Promise<any> | void;
   setUser: (user: AuthUser) => void;
+  session: Session | null;
 }
 
 export const UserContext = createContext<UserContextInterface | null>(null);
@@ -47,7 +48,9 @@ export function UserContextProvider({
   }
 
   return (
-    <UserContext.Provider value={{ user, loginUser, logoutUser, setUser }}>
+    <UserContext.Provider
+      value={{ user, loginUser, logoutUser, setUser, session }}
+    >
       {children}
     </UserContext.Provider>
   );

@@ -21,10 +21,13 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.29.0",
+    "@types/formidable": "^2.0.0",
     "@types/react-alert": "^5.2.1",
     "@types/react-scroll": "^1.8.3",
+    "axios": "^0.24.0",
     "clsx": "^1.1.1",
     "daisyui": "^1.17.1",
+    "formidable": "^2.0.1",
     "next": "^12.0.7",
     "react": "^17.0.2",
     "react-alert": "^7.0.3",
