@@ -35,7 +35,7 @@ export default function Download() {
       )
       .then((res) => {
         setUploaded(true);
-        setUsername(res.data.data[0]);
+        setUsername(res.data.data);
         // const image = document.getElementById('output');
         setSpinner(false);
         alert.show('Found watermark', {
