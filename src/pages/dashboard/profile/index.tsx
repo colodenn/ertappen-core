@@ -12,7 +12,7 @@ export default function Profile() {
   const getUser = useUser();
 
   useEffect(() => {
-    setUser(getUser?.user);
+    setUser(getUser?.user ?? null);
   }, []);
   return (
     <>

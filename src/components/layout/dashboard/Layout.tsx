@@ -13,10 +13,10 @@ type LayoutProp = {
 export default function Layout(props: LayoutProp) {
   const user = useUser();
   const router = useRouter();
-  const [id, setId] = useState('');
+  const [id, setId] = useState<string | null>(null);
 
   useEffect(() => {
-    setId(user?.user?.id);
+    setId(user?.user?.id ?? null);
   }, []);
   async function logout() {
     const { error } = await user?.logoutUser();

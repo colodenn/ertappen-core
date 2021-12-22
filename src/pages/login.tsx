@@ -9,7 +9,9 @@ export default function Login() {
   const [message, setMessage] = useState('');
   const loginUser = useUser();
 
-  async function login(e: MouseEvent<HTMLButtonElement, MouseEvent>) {
+  async function login(
+    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) {
     e.preventDefault();
     const { error } = await loginUser?.loginUser(email);
     if (error) {
