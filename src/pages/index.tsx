@@ -54,7 +54,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className='flex justify-center mt-6'>
-              <div className='grid grid-rows-6 grid-flow-col gap-4 w-full md:grid-rows-1'>
+              <div className='grid grid-rows-3 grid-flow-col gap-4 w-full md:grid-rows-1'>
                 <div className='flex justify-center p-4 mb-2 w-full rounded-lg border-gray-200 shadow-md'>
                   <div>
                     <div className='flex items-center'>
