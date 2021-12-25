@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/next-script-for-ga */
 import Document, {
   DocumentContext,
   Head,
@@ -24,9 +25,13 @@ class MyDocument extends Document {
             crossOrigin='anonymous'
           />
           <script
+            async
+            src='https://www.googletagmanager.com/gtag/js?id=G-QSRXKZ1Q9H'
+          ></script>
+          <script
             dangerouslySetInnerHTML={{
               __html: `
-              <script async src="https://www.googletagmanager.com/gtag/js?id=G-QSRXKZ1Q9H"></script>
+              
               <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
