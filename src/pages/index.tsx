@@ -212,7 +212,7 @@ export default function HomePage() {
                           $
                         </span>
                         <span className='text-3xl font-bold text-gray-800'>
-                          10
+                          5
                         </span>
                         <span className='inline-block text-sm transform -translate-y-0.5'>
                           / user

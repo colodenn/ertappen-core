@@ -23,6 +23,19 @@ class MyDocument extends Document {
             type='font/woff2'
             crossOrigin='anonymous'
           />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `<!-- Global site tag (gtag.js) - Google Analytics -->
+              <script async src="https://www.googletagmanager.com/gtag/js?id=G-QSRXKZ1Q9H"></script>
+              <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+              
+                gtag('config', 'G-QSRXKZ1Q9H');
+              </script>`,
+            }}
+          />
         </Head>
         <body>
           <Main />

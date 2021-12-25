@@ -1070,6 +1070,11 @@
   resolved "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.1.tgz"
   integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
 
+"@types/mixpanel-browser@^2.36.0":
+  version "2.36.0"
+  resolved "https://registry.yarnpkg.com/@types/mixpanel-browser/-/mixpanel-browser-2.36.0.tgz#7d46fc51d7f22d1d09d5521404d156a96a54f306"
+  integrity sha512-aEuQOhK8rEE8TtUbF19H9z/pEYz1xg3/1fpu9qufXpqsR/PHLc1QnrO21BFwHmFytOFaRwEgCPqUhpy/rfIWIA==
+
 "@types/node@*":
   version "15.12.5"
   resolved "https://registry.npmjs.org/@types/node/-/node-15.12.5.tgz"
@@ -4852,6 +4857,11 @@ minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.5:
   version "1.2.5"
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.5.tgz"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+
+mixpanel-browser@^2.42.1:
+  version "2.42.1"
+  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.42.1.tgz#4c067fe172fc27e89e063415f2985ebe688b3bf5"
+  integrity sha512-47oOBCnyREFQiM+IFYquoV0ClTW+vhu3JIyig7TtHD2tY6SuIpxG57tDTUAespyg4cQzWCLQdk2P84zozG4L+Q==
 
 modify-values@^1.0.0:
   version "1.0.1"
