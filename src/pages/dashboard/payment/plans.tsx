@@ -59,7 +59,7 @@ export default function Plans() {
                 <div className='mt-2 space-y-3'>
                   <div className='text-gray-700'>10 deploys per day</div>
                   <div className='text-gray-700'>10 GB of storage</div>
-                  <div className='text-gray-700'>20 domains</div>
+                  <div className='text-gray-700'>10 domains</div>
                 </div>
               </div>
               <div>
