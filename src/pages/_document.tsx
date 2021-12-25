@@ -25,7 +25,7 @@ class MyDocument extends Document {
           />
           <script
             dangerouslySetInnerHTML={{
-              __html: `<!-- Global site tag (gtag.js) - Google Analytics -->
+              __html: `
               <script async src="https://www.googletagmanager.com/gtag/js?id=G-QSRXKZ1Q9H"></script>
               <script>
                 window.dataLayer = window.dataLayer || [];
