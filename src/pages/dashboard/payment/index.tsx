@@ -1,8 +1,24 @@
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { AlertType, useAlert } from 'react-alert';
 
 import Layout from '@/components/layout/dashboard/Layout';
 export default function Payment() {
   const router = useRouter();
+  const { status } = router.query;
+  const alert = useAlert();
+  function showAlert(message: string, type: AlertType) {
+    alert.show(message, {
+      type: type,
+    });
+  }
+  useEffect(() => {
+    status &&
+      status === 'success' &&
+      showAlert('Transaction successful', 'success');
+    status && status === 'cancel' && showAlert('Payment Cancelled', 'error');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <Layout name='Plan'>

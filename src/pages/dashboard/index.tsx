@@ -1,20 +1,17 @@
-import { useAlert } from 'react-alert';
+import { useRouter } from 'next/router';
 
 import Layout from '@/components/layout/dashboard/Layout';
 
 function Home() {
-  const alert = useAlert();
-
+  const router = useRouter();
   return (
     <>
       <Layout name='Dashboard'>
         <div className='grid gap-4 md:grid-cols-3'>
           <div
-            className='card mb-8 shadow-lg'
+            className='card mb-8 bg-white shadow-lg cursor-pointer'
             onClick={() => {
-              alert.show('success', {
-                type: 'success',
-              });
+              router.push('/dashboard/images');
             }}
           >
             <div className='card-body'>
@@ -25,13 +22,23 @@ function Home() {
               </p>
             </div>
           </div>
-          <div className='card mb-8 shadow-lg'>
+          <div
+            className='card mb-8 bg-white shadow-lg cursor-pointer'
+            onClick={() => {
+              router.push('/dashboard/images');
+            }}
+          >
             <div className='card-body'>
               <h2 className='card-title'>Add a User</h2>
               <p>Proceed and add a userspecific watermark to your image.</p>
             </div>
           </div>
-          <div className='card mb-8 shadow-lg'>
+          <div
+            className='card mb-8 bg-white shadow-lg cursor-pointer'
+            onClick={() => {
+              router.push('/dashboard/download');
+            }}
+          >
             <div className='card-body'>
               <h2 className='card-title'>Detect User</h2>
               <p>

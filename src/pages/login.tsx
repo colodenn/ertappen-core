@@ -22,8 +22,8 @@ export default function Login() {
   }
 
   return (
-    <main className='align-center dotted flex justify-center items-center mx-auto my-auto w-full h-screen'>
-      <div>
+    <main className='align-center dotted flex justify-center mx-auto w-full h-screen'>
+      <div className='mt-48'>
         <h1 className='mb-8 text-3xl text-center md:text-4xl'>ertappen.</h1>
         <form className='p-8 w-96 bg-gray-50 rounded shadow'>
           <h1 className='text-3xl text-center md:text-4xl'>Login</h1>
