@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { AlertType, useAlert } from 'react-alert';
@@ -17,8 +18,7 @@ export default function Payment() {
       status === 'success' &&
       showAlert('Transaction successful', 'success');
     status && status === 'cancel' && showAlert('Payment Cancelled', 'error');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [status]);
   return (
     <>
       <Layout name='Plan'>
