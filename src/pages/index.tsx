@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 
 import Footer from '@/components/layout/Footer';
@@ -7,6 +8,7 @@ import Header from '@/components/layout/Header';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 export default function HomePage() {
+  const router = useRouter();
   return (
     <Layout>
       {/* <Seo templateTitle='Home' /> */}
@@ -25,6 +27,12 @@ export default function HomePage() {
                 the naked eye. Want to find the monger of your images? Mark them
                 with our tool and find out who is spreading them.
               </h3>
+              <button
+                onClick={() => router.push('/login')}
+                className='btn btn-primary mt-8'
+              >
+                Get started for free
+              </button>
             </div>
           </section>
         </div>
@@ -215,7 +223,7 @@ export default function HomePage() {
                           5
                         </span>
                         <span className='inline-block text-sm transform -translate-y-0.5'>
-                          / user
+                          / month
                         </span>
                       </p>
                     </div>
@@ -340,7 +348,7 @@ export default function HomePage() {
                           25
                         </span>
                         <span className='inline-block text-sm transform -translate-y-0.5'>
-                          / user
+                          / month
                         </span>
                       </p>
                     </div>

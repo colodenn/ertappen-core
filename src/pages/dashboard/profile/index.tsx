@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { AuthUser } from '@supabase/supabase-js';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -8,9 +10,13 @@ import Layout from '@/components/layout/dashboard/Layout';
 
 import { useUser } from '@/utils/useUser';
 export default function Profile() {
+  const router = useRouter();
   const [user, setUser] = useState<AuthUser | null>(null);
   const getUser = useUser();
-
+  function deleteAccount() {
+    getUser?.logoutUser();
+    router.push('/');
+  }
   useEffect(() => {
     setUser(getUser?.user ?? null);
   }, []);
@@ -37,7 +43,10 @@ export default function Profile() {
                 </div>
               </div>
               <div>
-                <a href='/profile/#my-modal' className='btn btn-error'>
+                <a
+                  href='/dashboard/profile/#my-modal'
+                  className='btn btn-error'
+                >
                   Delete Account
                 </a>
                 <div id='my-modal' className='modal'>
@@ -47,9 +56,12 @@ export default function Profile() {
                     </p>
                     <p>This action is inevitable!</p>
                     <div className='modal-action'>
-                      <a href='#' className='btn btn-error'>
+                      <button
+                        onClick={() => deleteAccount()}
+                        className='btn btn-error'
+                      >
                         Delete
-                      </a>
+                      </button>
                       <a href='#' className='btn'>
                         Close
                       </a>

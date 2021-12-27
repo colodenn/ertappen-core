@@ -4,39 +4,46 @@ import { createOrRetrieveCustomer, getUser } from '@/utils/api';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 async function CreateStripeSession(req, res) {
-  const { item } = req.body;
+  const { item, id } = req.body;
   const token = req.headers.token;
   const user = await getUser(token);
+  try {
+    const customer = await createOrRetrieveCustomer({
+      uuid: user?.id || '',
+      email: user?.email || '',
+    });
 
-  const customer = await createOrRetrieveCustomer({
-    uuid: user.id,
-    email: user.email,
-  });
+    const redirectURL =
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000'
+        : 'https://ertappen.com';
 
-  const redirectURL =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : 'https://ertappen-core.vercel.app';
-
-  const session = await stripe.checkout.sessions.create({
-    billing_address_collection: 'auto',
-    customer,
-    payment_method_types: ['card'],
-    line_items: [
-      {
-        price: 'price_1JnIwnJiaERapW9RSRSntN1e',
-        quantity: 1,
+    const session = await stripe.checkout.sessions.create({
+      billing_address_collection: 'auto',
+      customer,
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price:
+            id === 'Basic'
+              ? 'price_1KBHRnJiaERapW9RAlYSK7QR'
+              : 'price_1KBHSBJiaERapW9RwsfNPHI4',
+          quantity: 1,
+        },
+      ],
+      mode: 'subscription',
+      success_url: redirectURL + '/dashboard/payment/?status=success',
+      cancel_url: redirectURL + '/dashboard/payment/?status=cancel',
+      metadata: {
+        images: item.image,
       },
-    ],
-    mode: 'subscription',
-    success_url: redirectURL + '/dashboard/payment/?status=success',
-    cancel_url: redirectURL + '/dashboard/payment/?status=cancel',
-    metadata: {
-      images: item.image,
-    },
-  });
+    });
 
-  res.json({ id: session.id });
+    res.json({ id: session.id });
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log(e);
+  }
 }
 
 export default CreateStripeSession;

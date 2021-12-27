@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import * as React from 'react';
 
 export default function Footer() {
@@ -11,9 +12,11 @@ export default function Footer() {
         <div className='mt-4'>
           <ul className='flex justify-start'>
             <li className='li mr-6 text-base border-b-2 border-gray-200'>
-              Terms of Service
+              <a href='/terms'>Terms of Service</a>
             </li>
-            <li className='li text-base border-b-2 border-gray-200'>Contact</li>
+            <li className='li text-base border-b-2 border-gray-200'>
+              <a href='mailto:cornelius.denninger@gmail.com'>Contact</a>
+            </li>
           </ul>
         </div>
       </div>

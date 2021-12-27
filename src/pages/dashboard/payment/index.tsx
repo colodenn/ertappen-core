@@ -1,18 +1,41 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { AlertType, useAlert } from 'react-alert';
 
 import Layout from '@/components/layout/dashboard/Layout';
+
+import { postData } from '@/utils/helpers';
+import { useUser } from '@/utils/useUser';
 export default function Payment() {
   const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [loading, setLoading] = useState(false);
+
+  const { subscription, session } = useUser();
   const { status } = router.query;
-  const alert = useAlert();
+  const alertt = useAlert();
   function showAlert(message: string, type: AlertType) {
-    alert.show(message, {
+    alertt.show(message, {
       type: type,
     });
   }
+  const subscriptionName =
+    subscription && subscription?.prices?.products?.[0].name;
+
+  const redirectToCustomerPortal = async () => {
+    setLoading(true);
+    try {
+      const { url } = await postData({
+        url: '/api/create-portal-link',
+        token: session?.access_token as string,
+      });
+      window.location.assign(url);
+    } catch (error) {
+      if (error) return alert((error as Error).message);
+    }
+    setLoading(false);
+  };
   useEffect(() => {
     status &&
       status === 'success' &&
@@ -31,25 +54,22 @@ export default function Payment() {
                 data-tip='10 Images/month'
                 className='rounded-box tooltip px-2 border-2 border-gray-300 cursor-pointer'
               >
-                {/* {subscription != null && subscription[0].type === "Pro"
-                  ? "Pro"
-                  : "Hobby"} */}
-                Hobby
+                {subscription != null ? subscriptionName : 'Free'}
               </span>{' '}
-              plan. Free of charge.
+              plan. {subscription != null ? '' : 'Free of charge.'}
             </p>
             <div className='card-actions'>
               <button
-                onClick={() => router.push('/dashboard/payment/plans')}
+                onClick={redirectToCustomerPortal}
                 className='btn btn-black'
               >
-                Upgrade Plan
+                Plan Manager
               </button>
               <button className='btn btn-ghost'>More info</button>
             </div>
           </div>
         </div>
-        <div className='card compact mb-8 shadow-lg md:max-w-3xl lg:card-side'>
+        {/* <div className='card compact mb-8 shadow-lg md:max-w-3xl lg:card-side'>
           <div className='card-body'>
             <h2 className='card-title'>Payment Method</h2>
             <p>
@@ -64,7 +84,7 @@ export default function Payment() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className='card compact mb-8 shadow-lg md:max-w-3xl lg:card-side'>
           <div className='card-body'>
             <h2 className='card-title'>Your Tariff</h2>
@@ -73,7 +93,12 @@ export default function Payment() {
               images.
             </p>
             <div className='card-actions flex items-center'>
-              <button className='btn btn-black'>Upgrade</button>
+              <button
+                onClick={() => router.push('/dashboard/payment/plans')}
+                className='btn btn-black'
+              >
+                Upgrade
+              </button>
             </div>
           </div>
         </div>

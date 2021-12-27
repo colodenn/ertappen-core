@@ -24,12 +24,13 @@ export default function Plans() {
     .NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string;
   const stripePromise = loadStripe(publishableKey);
 
-  const createCheckOutSession = async () => {
+  const createCheckOutSession = async (id: string) => {
     const stripe = await stripePromise;
     const checkoutSession: AxiosResponse<any, any> = await axios.post(
       '/api/create-stripe-session',
       {
         item: item,
+        id: id,
       },
       {
         headers: {
@@ -57,20 +58,17 @@ export default function Plans() {
                   <div className='mr-1 text-5xl font-bold'>Free</div>
                 </div>
                 <div className='mt-2 space-y-3'>
-                  <div className='text-gray-700'>10 deploys per day</div>
-                  <div className='text-gray-700'>10 GB of storage</div>
-                  <div className='text-gray-700'>10 domains</div>
+                  <div className='text-gray-700'>3 Images per month</div>
+                  <div className='text-gray-700'>1 Watermark each</div>
+                  <div className='text-gray-700'>Email Support</div>
                 </div>
               </div>
-              <div>
+              <div className='w-full'>
                 <Link href='/'>
-                  <div className='inline-flex justify-center items-center px-6 mt-6 w-full h-12 font-medium tracking-wide text-white bg-gray-800 rounded shadow-md transition duration-200 hover:bg-gray-900 focus:shadow-outline focus:outline-none'>
+                  <div className='inline-flex justify-center items-center px-6 mt-6 w-full h-12 font-medium tracking-wide text-white bg-gray-800 rounded shadow-md transition duration-200 focus:shadow-outline focus:outline-none'>
                     Currently
                   </div>
                 </Link>
-                <p className='mt-6 max-w-xs text-xs text-gray-600 sm:mx-auto sm:max-w-sm sm:text-sm sm:text-center'>
-                  Sed ut unde omnis iste natus accusantium doloremque.
-                </p>
               </div>
             </div>
             <div className='border-deep-purple-accent-400 flex relative flex-col justify-between p-8 bg-white rounded border shadow-sm transition-shadow duration-300 sm:items-center hover:shadow'>
@@ -80,51 +78,46 @@ export default function Plans() {
                 </div>
               </div>
               <div className='text-center'>
-                <div className='text-lg font-semibold'>Pro</div>
+                <div className='text-lg font-semibold'>Basic</div>
                 <div className='flex justify-center items-center mt-2'>
-                  <div className='mr-1 text-5xl font-bold'>$38</div>
+                  <div className='mr-1 text-5xl font-bold'>$5</div>
                   <div className='text-gray-700'>/ mo</div>
                 </div>
                 <div className='mt-2 space-y-3'>
-                  <div className='text-gray-700'>200 deploys per day</div>
-                  <div className='text-gray-700'>80 GB of storage</div>
-                  <div className='text-gray-700'>Global CDN</div>
+                  <div className='text-gray-700'>10 Images</div>
+                  <div className='text-gray-700'>With 10 Watermarks each</div>
+                  <div className='text-gray-700'>Priority Email Support</div>
                 </div>
               </div>
-              <div>
+              <div className='w-full'>
                 <button
                   className='btn inline-flex justify-center items-center px-6 mt-6 w-full h-12 font-medium tracking-wide text-white rounded shadow-md transition duration-200 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
-                  onClick={createCheckOutSession}
+                  onClick={() => createCheckOutSession('Basic')}
                 >
-                  Buy Pro
+                  Upgrade to Basic
                 </button>
-                <p className='mt-6 max-w-xs text-xs text-gray-600 sm:mx-auto sm:max-w-sm sm:text-sm sm:text-center'>
-                  Sed ut unde omnis iste natus accusantium doloremque.
-                </p>
               </div>
             </div>
             <div className='flex flex-col justify-between p-8 bg-white rounded border shadow-sm transition-shadow duration-300 sm:items-center hover:shadow'>
               <div className='text-center'>
-                <div className='text-lg font-semibold'>Business</div>
+                <div className='text-lg font-semibold'>Pro</div>
                 <div className='flex justify-center items-center mt-2'>
-                  <div className='mr-1 text-5xl font-bold'>$78</div>
+                  <div className='mr-1 text-5xl font-bold'>$25</div>
                   <div className='text-gray-700'>/ mo</div>
                 </div>
                 <div className='mt-2 space-y-3'>
-                  <div className='text-gray-700'>500 GB of storage</div>
-                  <div className='text-gray-700'>Unlimited domains</div>
-                  <div className='text-gray-700'>24/7 Support</div>
+                  <div className='text-gray-700'>50 Images</div>
+                  <div className='text-gray-700'>With 25 Watermarks each</div>
+                  <div className='text-gray-700'>Priority Email Support</div>
                 </div>
               </div>
-              <div>
-                <Link href='/'>
-                  <div className='inline-flex justify-center items-center px-6 mt-6 w-full h-12 font-medium tracking-wide text-white bg-gray-800 rounded shadow-md transition duration-200 hover:bg-gray-900 focus:shadow-outline focus:outline-none'>
-                    Buy Business
-                  </div>
-                </Link>
-                <p className='mt-6 max-w-xs text-xs text-gray-600 sm:mx-auto sm:max-w-sm sm:text-sm sm:text-center'>
-                  Sed ut unde omnis iste natus accusantium doloremque.
-                </p>
+              <div className='w-full'>
+                <button
+                  className='btn inline-flex justify-center items-center px-6 mt-6 w-full h-12 font-medium tracking-wide text-white rounded shadow-md transition duration-200 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none'
+                  onClick={() => createCheckOutSession('Pro')}
+                >
+                  Upgrade to Pro
+                </button>
               </div>
             </div>
           </div>
