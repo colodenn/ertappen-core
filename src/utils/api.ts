@@ -38,7 +38,7 @@ const upsertProductRecord = async (product: Stripe.Product) => {
 
   const { error } = await supabaseAdmin
     .from<Product>('products')
-    .insert([productData], { upsert: true });
+    .upsert([productData]);
   if (error) throw error;
   // console.log(`Product inserted/updated: ${product.id}`);
 };
@@ -180,7 +180,7 @@ const manageSubscriptionStatusChange = async (
     //@ts-ignore
     await copyBillingDetailsToCustomer(
       uuid,
-      subscription.default_payment_method
+      subscription.default_payment_method as Stripe.PaymentMethod
     );
 };
 
