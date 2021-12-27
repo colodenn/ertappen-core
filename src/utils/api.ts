@@ -60,7 +60,7 @@ const upsertPriceRecord = async (price: Stripe.Price) => {
 
   const { error } = await supabaseAdmin
     .from<Price>('prices')
-    .insert([priceData], { upsert: true });
+    .upsert([priceData]);
   if (error) throw error;
   // console.log(`Price inserted/updated: ${price.id}`);
 };
